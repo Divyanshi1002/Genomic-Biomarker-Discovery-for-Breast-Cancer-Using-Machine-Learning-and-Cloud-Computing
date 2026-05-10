@@ -119,26 +119,38 @@ Visualization & Reporting
 bioinformatics-cancer-pipeline/
 │
 ├── data/
-│   ├── raw/
-│   ├── processed/
-│   └── external/
+│   ├── raw/                 # Original downloaded datasets
+│   ├── processed/           # Cleaned/normalized datasets
+│   └── external/            # External reference files
 │
 ├── notebooks/
+│   ├── 01_data_ingestion.ipynb
+│   ├── 02_preprocessing.ipynb
+│   ├── 03_differential_expression.ipynb
+│   ├── 04_ml_modeling.ipynb
+│   └── 05_pathway_analysis.ipynb
 │
 ├── src/
 │   ├── preprocessing/
+│   ├── differential_expression/
 │   ├── feature_engineering/
 │   ├── modeling/
+│   ├── pathway_analysis/
 │   └── visualization/
 │
-├── pipeline/
-│
 ├── models/
+│   ├── trained_models/
+│   └── evaluation_metrics/
+│
+├── outputs/
+│   ├── plots/
+│   ├── reports/
+│   └── biomarker_results/
 │
 ├── dashboard/
 │
+├── requirements.txt
 ├── README.md
-└── requirements.txt
 ```
 
 ---
