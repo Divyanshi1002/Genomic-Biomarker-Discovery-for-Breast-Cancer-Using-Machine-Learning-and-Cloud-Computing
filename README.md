@@ -1,32 +1,32 @@
-# Genomic-Biomarker-Discovery-for-Breast-Cancer-Using-Machine-Learning-and-Cloud-Computing
+# Genomic Biomarker Discovery for Breast Cancer Using Machine Learning and Cloud Computing
 
-An end-to-end bioinformatics pipeline for cancer biomarker discovery using public genomic datasets, cloud-based data processing, machine learning, and pathway analysis.
+An end-to-end bioinformatics pipeline for breast cancer biomarker discovery using public genomic datasets, machine learning, pathway enrichment analysis, and cloud-based computational workflows.
 
-This project demonstrates how genomic data can be ingested, processed, analyzed, and transformed into clinically relevant insights using scalable healthcare data engineering workflows.
+This project demonstrates how genomic data can be ingested, processed, analyzed, and transformed into biologically meaningful insights using reproducible bioinformatics and healthcare analytics workflows.
 
 ---
 
 # Project Overview
 
-The pipeline analyzes cancer gene expression datasets from TCGA/GEO to identify differentially expressed genes and potential biomarkers associated with cancer subtypes.
+This pipeline analyzes breast cancer gene expression datasets from TCGA and GEO to identify differentially expressed genes and potential biomarkers associated with cancer progression and subtype classification.
 
-The workflow combines:
+The workflow integrates:
 - Bioinformatics analysis
-- Data engineering
 - Machine learning
+- Genomic data preprocessing
 - Biological pathway interpretation
-- Cloud-native processing
+- Reproducible cloud-based computation
 
 ---
 
 # Objectives
 
-- Build a reproducible genomic data analysis pipeline
+- Build a reproducible genomic analysis workflow
 - Perform differential gene expression analysis
-- Identify cancer-associated biomarkers
-- Train ML models for subtype prediction
+- Identify candidate cancer biomarkers
+- Train machine learning models for subtype prediction
 - Conduct pathway enrichment analysis
-- Enable scalable processing using cloud tools
+- Enable future scalability using cloud-native tools
 
 ---
 
@@ -36,35 +36,41 @@ The workflow combines:
 - Python
 - R
 
-## Bioinformatics Tools
+## Bioinformatics & Genomics
 - DESeq2
 - Bioconductor
+- GSEApy
 - KEGG
 - Cytoscape
-
-## Data Engineering
-- Databricks
-- PySpark
-- Delta Lake
 
 ## Machine Learning
 - Scikit-learn
 - XGBoost
+
+## Data Processing
+- Pandas
+- NumPy
 
 ## Visualization
 - Plotly
 - Matplotlib
 - Seaborn
 
-## Cloud
+## Cloud & Development Environment
+- Google Colab
+- GitHub
+
+## Planned Cloud Extensions
 - Google Cloud Platform (GCP)
-- Databricks Community Edition
+- Vertex AI
+- MLflow
+- Streamlit
 
 ---
 
 # Dataset
 
-## Source
+## Sources
 - The Cancer Genome Atlas (TCGA)
 - Gene Expression Omnibus (GEO)
 
@@ -105,11 +111,11 @@ Visualization & Reporting
 # Key Features
 
 - Automated preprocessing of genomic datasets
-- Differential expression analysis using DESeq2
+- Differential gene expression analysis using DESeq2
 - Biomarker identification workflow
-- ML-based cancer subtype prediction
-- Pathway enrichment using KEGG
-- Reproducible cloud-native pipeline architecture
+- ML-based breast cancer subtype prediction
+- KEGG pathway enrichment analysis
+- Reproducible notebook-based workflow using Google Colab
 
 ---
 
@@ -120,7 +126,7 @@ bioinformatics-cancer-pipeline/
 │
 ├── data/
 │   ├── raw/                 # Original downloaded datasets
-│   ├── processed/           # Cleaned/normalized datasets
+│   ├── processed/           # Cleaned and normalized datasets
 │   └── external/            # External reference files
 │
 ├── notebooks/
@@ -159,7 +165,7 @@ bioinformatics-cancer-pipeline/
 
 ## 1. Data Ingestion
 - Download genomic datasets from TCGA/GEO
-- Store datasets in structured format
+- Store datasets in structured formats
 
 ## 2. Data Preprocessing
 - Handle missing values
@@ -167,35 +173,44 @@ bioinformatics-cancer-pipeline/
 - Filter low-expression genes
 
 ## 3. Differential Gene Expression Analysis
-- Compare cancer vs normal samples
+- Compare tumor and normal samples
 - Identify significantly dysregulated genes
 
 ## 4. Feature Engineering
-- Select important biomarkers
-- Reduce dimensionality
+- Select biologically relevant biomarkers
+- Reduce dimensionality for modeling
 
 ## 5. Machine Learning
 - Train classification models
-- Evaluate ROC-AUC, precision, recall, F1-score
+- Evaluate ROC-AUC, precision, recall, and F1-score
 
 ## 6. Biological Interpretation
-- Perform KEGG pathway enrichment
-- Analyze biological significance
+- Perform KEGG pathway enrichment analysis
+- Interpret pathways associated with cancer progression
 
 ---
 
-# Results
+# Expected Results
 
-- Identified candidate biomarkers associated with cancer progression
-- Generated interpretable ML predictions for cancer subtype classification
-- Visualized enriched biological pathways and gene interactions
+- Identification of candidate biomarkers associated with breast cancer
+- Machine learning-based subtype classification
+- Visualization of dysregulated genes and enriched pathways
+- Reproducible genomic analysis workflow
 
 ---
 
 # Future Improvements
 
-- Add survival analysis
+- Add survival analysis using clinical metadata
 - Integrate multi-omics datasets
 - Deploy Streamlit dashboard
 - Add MLflow experiment tracking
-- Enable real-time genomic processing
+- Migrate workflows to GCP Vertex AI
+- Enable scalable distributed genomic processing
+
+---
+
+# Author
+
+Divyanshi Kanwar  
+M.Sc. Bioinformatics
