@@ -119,47 +119,6 @@ Visualization & Reporting
 
 ---
 
-# Project Structure
-
-```text
-bioinformatics-cancer-pipeline/
-│
-├── data/
-│   ├── raw/                 # Original downloaded datasets
-│   ├── processed/           # Cleaned and normalized datasets
-│   └── external/            # External reference files
-│
-├── notebooks/
-│   ├── 01_data_ingestion.ipynb
-│   ├── 02_preprocessing.ipynb
-│   ├── 03_differential_expression.ipynb
-│   ├── 04_ml_modeling.ipynb
-│   └── 05_pathway_analysis.ipynb
-│
-├── src/
-│   ├── preprocessing/
-│   ├── differential_expression/
-│   ├── feature_engineering/
-│   ├── modeling/
-│   ├── pathway_analysis/
-│   └── visualization/
-│
-├── models/
-│   ├── trained_models/
-│   └── evaluation_metrics/
-│
-├── outputs/
-│   ├── plots/
-│   ├── reports/
-│   └── biomarker_results/
-│
-├── dashboard/
-│
-├── requirements.txt
-├── README.md
-```
-
----
 
 # Workflow
 
@@ -190,14 +149,6 @@ bioinformatics-cancer-pipeline/
 
 ---
 
-# Expected Results
-
-- Identification of candidate biomarkers associated with breast cancer
-- Machine learning-based subtype classification
-- Visualization of dysregulated genes and enriched pathways
-- Reproducible genomic analysis workflow
-
----
 
 # Future Improvements
 
@@ -209,8 +160,3 @@ bioinformatics-cancer-pipeline/
 - Enable scalable distributed genomic processing
 
 ---
-
-# Author
-
-Divyanshi Kanwar  
-M.Sc. Bioinformatics
