@@ -1,0 +1,13 @@
+# Large datasets
+Data/Raw_data/
+Data/Processed_data/
+
+# Compressed files
+*.gz
+
+# Python
+__pycache__/
+.ipynb_checkpoints/
+
+# Environment
+.env
