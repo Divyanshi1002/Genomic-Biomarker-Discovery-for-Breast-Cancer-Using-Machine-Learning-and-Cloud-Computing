@@ -1,32 +1,41 @@
 # Genomic Biomarker Discovery for Breast Cancer Using Machine Learning and Cloud Computing
 
-An end-to-end bioinformatics pipeline for breast cancer biomarker discovery using public genomic datasets, machine learning, pathway enrichment analysis, and cloud-based computational workflows.
-
-This project demonstrates how genomic data can be ingested, processed, analyzed, and transformed into biologically meaningful insights using reproducible bioinformatics and healthcare analytics workflows.
+An end-to-end bioinformatics and machine learning pipeline for breast cancer biomarker discovery using TCGA RNA-seq datasets, differential gene expression analysis, pathway enrichment, and leakage-free transcriptomic classification workflows.
 
 ---
 
-# Project Overview
+# Overview
 
-This pipeline analyzes breast cancer gene expression datasets from TCGA and GEO to identify differentially expressed genes and potential biomarkers associated with cancer progression and subtype classification.
+This project analyzes TCGA Breast Cancer (BRCA) RNA-seq data to identify stable genomic biomarkers associated with tumor progression and transcriptomic dysregulation.
 
-The workflow integrates:
-- Bioinformatics analysis
-- Machine learning
-- Genomic data preprocessing
-- Biological pathway interpretation
-- Reproducible cloud-based computation
+The workflow combines:
+- RNA-seq preprocessing
+- Differential gene expression (DEG) analysis
+- Stable biomarker discovery
+- KEGG pathway enrichment
+- Leakage-free machine learning
+- PCA and heatmap visualization
 
 ---
 
 # Objectives
 
-- Build a reproducible genomic analysis workflow
-- Perform differential gene expression analysis
-- Identify candidate cancer biomarkers
-- Train machine learning models for subtype prediction
-- Conduct pathway enrichment analysis
-- Enable future scalability using cloud-native tools
+- Build a reproducible transcriptomic analysis workflow
+- Identify significantly dysregulated genes
+- Discover stable breast cancer biomarkers
+- Develop leakage-free ML classification pipelines
+- Evaluate tumor vs normal transcriptomic separation
+
+---
+
+# Dataset
+
+## Source
+- TCGA Breast Cancer (BRCA)
+
+## Data Used
+- RNA-seq TPM gene expression matrix
+- Clinical metadata
 
 ---
 
@@ -36,125 +45,185 @@ The workflow integrates:
 - Python
 - R
 
-## Bioinformatics & Genomics
+## Bioinformatics
 - DESeq2
-- Bioconductor
 - GSEApy
 - KEGG
-- Cytoscape
+- Bioconductor
 
 ## Machine Learning
 - Scikit-learn
-- XGBoost
+- Logistic Regression
+- LASSO Regression
+- Random Forest
 
 ## Data Processing
 - Pandas
 - NumPy
+- SciPy
 
 ## Visualization
-- Plotly
 - Matplotlib
 - Seaborn
+- Plotly
 
-## Cloud & Development Environment
+## Environment
 - Google Colab
 - GitHub
-
-## Planned Cloud Extensions
-- Google Cloud Platform (GCP)
-- Vertex AI
-- MLflow
-- Streamlit
-
----
-
-# Dataset
-
-## Sources
-- The Cancer Genome Atlas (TCGA)
-- Gene Expression Omnibus (GEO)
-- TCGA Breast Cancer (BRCA)
 
 ---
 
 # Pipeline Architecture
 
 ```text
-Raw Genomic Data
-       │
-       ▼
-Data Ingestion
-       │
-       ▼
+TCGA RNA-seq Data
+        │
+        ▼
 Data Cleaning & Normalization
-       │
-       ▼
-Differential Gene Expression Analysis
-       │
-       ▼
-Feature Selection
-       │
-       ▼
-Machine Learning Classification
-       │
-       ▼
-Pathway Enrichment Analysis
-       │
-       ▼
-Visualization & Reporting
+        │
+        ▼
+Tumor vs Normal Labeling
+        │
+        ▼
+Differential Expression Analysis
+        │
+        ▼
+Stable Biomarker Selection
+        │
+        ▼
+KEGG Pathway Enrichment
+        │
+        ▼
+Leakage-Free ML Pipeline
+        │
+        ▼
+PCA & Heatmap Visualization
 ```
+
+---
+
+# Workflow
+
+## 1. Data Preprocessing
+- Cleaned and normalized TPM gene expression data
+- Removed missing and low-expression genes
+- Generated tumor vs normal labels
+
+---
+
+## 2. Differential Gene Expression Analysis
+
+Performed tumor vs normal DEG analysis using:
+- Fold-change computation
+- Welch’s t-test
+- Benjamini-Hochberg FDR correction
+
+### Result
+- Identified ~1,300 significantly dysregulated genes
+
+---
+
+# Biomarker Discovery
+
+To prevent information leakage:
+- DEG analysis was performed independently within each training fold
+- Top biomarkers were selected fold-wise
+- Stable biomarkers were identified across stratified cross-validation folds
+
+---
+
+# Machine Learning Pipeline
+
+## Models Evaluated
+- Logistic Regression
+- LASSO Logistic Regression
+- Random Forest
+
+## Validation Strategy
+- Stratified 5-Fold Cross Validation
+- Fold-wise DEG analysis
+- Train-only feature selection
+- ROC-AUC evaluation
+
+---
+
+# Results
+
+| Model | Mean Accuracy | Mean ROC-AUC |
+|---|---|---|
+| Logistic Regression | 99.4% | 0.9994 |
+| LASSO Regression | 99.5% | 0.9997 |
+| Random Forest | 99.3% | 0.9993 |
+
+---
+
+# Pathway Enrichment Analysis
+
+KEGG enrichment analysis identified pathways associated with breast cancer progression, including:
+- Cell cycle regulation
+- Cytokine signaling
+- Viral carcinogenesis
+- PPAR signaling
+
+---
+
+# Visualizations
+
+## Differential Expression Volcano Plot
+![Volcano Plot](volcano_plot.png)
+
+## LASSO ROC Curve
+![ROC Curve](lasso_roc_curve.png)
+
+## Stable Biomarker Heatmap
+![Heatmap](Biomarkers_Heatmap.png)
+
+## PCA of Transcriptomic Biomarkers
+![PCA Plot](pca_biomarker_plot.png)
 
 ---
 
 # Key Features
 
-- Automated preprocessing of genomic datasets
-- Differential gene expression analysis using DESeq2
-- Biomarker identification workflow
-- ML-based breast cancer subtype prediction
-- KEGG pathway enrichment analysis
-- Reproducible notebook-based workflow using Google Colab
+- End-to-end transcriptomic analysis workflow
+- Leakage-free ML evaluation
+- Stable biomarker discovery
+- Fold-wise DEG analysis
+- KEGG pathway interpretation
+- Publication-style genomics visualizations
 
 ---
 
+# Project Structure
 
-# Workflow
-
-## 1. Data Ingestion
-- Download genomic datasets from TCGA/GEO
-- Store datasets in structured formats
-
-## 2. Data Preprocessing
-- Handle missing values
-- Normalize gene expression counts
-- Filter low-expression genes
-
-## 3. Differential Gene Expression Analysis
-- Compare tumor and normal samples
-- Identify significantly dysregulated genes
-
-## 4. Feature Engineering
-- Select biologically relevant biomarkers
-- Reduce dimensionality for modeling
-
-## 5. Machine Learning
-- Train classification models
-- Evaluate ROC-AUC, precision, recall, and F1-score
-
-## 6. Biological Interpretation
-- Perform KEGG pathway enrichment analysis
-- Interpret pathways associated with cancer progression
+```text
+bioinformatics-cancer-pipeline/
+│
+├── notebooks/
+│   ├── 1_data_ingestion&Preprocessing.ipynb
+│   ├── 2_differential_expression.ipynb
+│   └── 3_ml_modeling_&visualization.ipynb
+│
+├── outputs/
+│   ├── graphs/
+│   ├── biomarkers/
+│   └── model_metrics/
+│
+├── models/
+│
+├── requirements.txt
+├── README.md
+└── .gitignore
+```
 
 ---
-
 
 # Future Improvements
 
-- Add survival analysis using clinical metadata
-- Integrate multi-omics datasets
-- Deploy Streamlit dashboard
-- Add MLflow experiment tracking
-- Migrate workflows to GCP Vertex AI
-- Enable scalable distributed genomic processing
-
----
+- External validation using GEO cohorts
+- Survival analysis
+- Multi-omics integration
+- SHAP-based interpretability
+- Streamlit deployment
+- MLflow experiment tracking
+- GCP Vertex AI integration
