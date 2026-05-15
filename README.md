@@ -73,8 +73,6 @@ The workflow integrates:
 ## Sources
 - The Cancer Genome Atlas (TCGA)
 - Gene Expression Omnibus (GEO)
-
-## Example Dataset
 - TCGA Breast Cancer (BRCA)
 
 ---
