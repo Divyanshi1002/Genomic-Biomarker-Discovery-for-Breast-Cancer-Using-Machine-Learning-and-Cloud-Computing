@@ -1,30 +1,23 @@
-# Genomic Biomarker Discovery for Breast Cancer Using Machine Learning and Cloud Computing
+# Genomic Biomarker Discovery for Breast Cancer
 
-An end-to-end bioinformatics and machine learning pipeline for breast cancer biomarker discovery using TCGA RNA-seq datasets, differential gene expression analysis, pathway enrichment, and leakage-free transcriptomic classification workflows.
+## End-to-End Bioinformatics & Leakage-Free Machine Learning Pipeline
+
+This repository presents a transcriptomics and machine learning workflow for identifying stable breast cancer biomarkers using the TCGA Breast Cancer (BRCA) RNA-seq dataset.
+
+The project combines classical differential expression analysis with ltranscriptomic machine learning to identify biologically relevant biomarkers and evaluate tumor-normal transcriptomic separability using RNA-seq data.
 
 ---
 
 # Overview
 
-This project analyzes TCGA Breast Cancer (BRCA) RNA-seq data to identify stable genomic biomarkers associated with tumor progression and transcriptomic dysregulation.
+The workflow integrates:
 
-The workflow combines:
 - RNA-seq preprocessing
-- Differential gene expression (DEG) analysis
-- Stable biomarker discovery
+- Differential gene expression analysis
+-  machine learning
+- LASSO-based biomarker discovery
 - KEGG pathway enrichment
-- Leakage-free machine learning
-- PCA and heatmap visualization
-
----
-
-# Objectives
-
-- Build a reproducible transcriptomic analysis workflow
-- Identify significantly dysregulated genes
-- Discover stable breast cancer biomarkers
-- Develop leakage-free ML classification pipelines
-- Evaluate tumor vs normal transcriptomic separation
+- PCA and clustered heatmap visualization
 
 ---
 
@@ -37,13 +30,13 @@ The workflow combines:
 - RNA-seq TPM gene expression matrix
 - Clinical metadata
 
+## Dataset Scale
+- ~60,000 genes
+- ~1,200 patient samples
+
 ---
 
 # Tech Stack
-
-## Languages
-- Python
-- R
 
 ## Bioinformatics
 - DESeq2
@@ -84,51 +77,21 @@ Data Cleaning & Normalization
         ▼
 Tumor vs Normal Labeling
         │
-        ▼
-Differential Expression Analysis
-        │
-        ▼
-Stable Biomarker Selection
-        │
-        ▼
-KEGG Pathway Enrichment
-        │
-        ▼
-Leakage-Free ML Pipeline
-        │
-        ▼
-PCA & Heatmap Visualization
+        ├──────────────────────┐
+        ▼                      ▼
+Differential Expression     Baseline ML Validation
+Analysis                    (All Genes)
+        │                      │
+        ▼                      ▼
+Stable Biomarker         LASSO Biomarker Discovery
+Selection                     │
+        └──────────┬──────────┘
+                   ▼
+        Pathway Enrichment Analysis
+                   │
+                   ▼
+         PCA & Heatmap Visualization
 ```
-
----
-
-# Workflow
-
-## 1. Data Preprocessing
-- Cleaned and normalized TPM gene expression data
-- Removed missing and low-expression genes
-- Generated tumor vs normal labels
-
----
-
-## 2. Differential Gene Expression Analysis
-
-Performed tumor vs normal DEG analysis using:
-- Fold-change computation
-- Welch’s t-test
-- Benjamini-Hochberg FDR correction
-
-### Result
-- Identified ~1,300 significantly dysregulated genes
-
----
-
-# Biomarker Discovery
-
-To prevent information leakage:
-- DEG analysis was performed independently within each training fold
-- Top biomarkers were selected fold-wise
-- Stable biomarkers were identified across stratified cross-validation folds
 
 ---
 
@@ -136,7 +99,7 @@ To prevent information leakage:
 
 ## Models Evaluated
 - Logistic Regression
-- LASSO Logistic Regression
+- LASSO Regression
 - Random Forest
 
 ## Validation Strategy
@@ -144,36 +107,32 @@ To prevent information leakage:
 - Fold-wise DEG analysis
 - Train-only feature selection
 - ROC-AUC evaluation
+- Permutation testing
+
+---
+
+# Baseline Transcriptomic Validation
+
+A separate baseline modeling workflow was developed using the complete RNA-seq transcriptome without prior feature selection or DEG filtering.
+
+Using TCGA barcode-derived tumor/normal labels and  stratified cross-validation:
+
+- Logistic Regression
+- LASSO Regression
+- Random Forest
+
+all demonstrated near-perfect tumor-normal separation across the transcriptomic expression matrix.
+
+This validated that the observed classification performance was driven by robust biological signal rather than aggressive feature engineering or information leakage.
 
 ---
 
 # Results
 
-| Model | Mean Accuracy | Mean ROC-AUC |
-|---|---|---|
-| Logistic Regression | 99.4% | 0.9994 |
-| LASSO Regression | 99.5% | 0.9997 |
-| Random Forest | 99.3% | 0.9993 |
-
----
-
-# Pathway Enrichment Analysis
-
-KEGG enrichment analysis identified pathways associated with breast cancer progression, including:
-- Cell cycle regulation
-- Cytokine signaling
-- Viral carcinogenesis
-- PPAR signaling
-
----
-
 # Visualizations
 
 ## Differential Expression Volcano Plot
 ![Volcano Plot](volcano_plot.png)
-
-## LASSO ROC Curve
-![ROC Curve](lasso_roc_curve.png)
 
 ## Stable Biomarker Heatmap
 ![Heatmap](Biomarkers_Heatmap.png)
@@ -181,47 +140,85 @@ KEGG enrichment analysis identified pathways associated with breast cancer progr
 ## PCA of Transcriptomic Biomarkers
 ![PCA Plot](pca_biomarker_plot.png)
 
----
+## LASSO Biomarker Heatmap
+![LASSO Heatmap](lasso_biomarker_heatmap.png)
 
-# Key Features
-
-- End-to-end transcriptomic analysis workflow
-- Leakage-free ML evaluation
-- Stable biomarker discovery
-- Fold-wise DEG analysis
-- KEGG pathway interpretation
-- Publication-style genomics visualizations
+## LASSO ROC Curve
+![ROC Curve](lasso_roc_curve.png)
 
 ---
 
-# Project Structure
+# ML Pipeline Results
 
-```text
-bioinformatics-cancer-pipeline/
-│
-├── notebooks/
-│   ├── 1_data_ingestion&Preprocessing.ipynb
-│   ├── 2_differential_expression.ipynb
-│   └── 3_ml_modeling_&visualization.ipynb
-│
-├── outputs/
-│   ├── graphs/
-│   ├── biomarkers/
-│   └── model_metrics/
-│
-├── models/
-│
-├── requirements.txt
-├── README.md
-└── .gitignore
-```
+| Model | Mean Accuracy | Mean ROC-AUC |
+|---|---|---|
+| Logistic Regression | 99.4% | 0.9994 |
+| LASSO Regression | 99.5% | 0.9997 |
+| Random Forest | 99.3% | 0.9993 |
+
+Permutation testing confirmed statistically significant classification performance (p ≈ 0.01), supporting that the identified transcriptomic signal was biologically meaningful rather than random.
+
+---
+
+# Baseline Transcriptomic Validation Results
+
+Using the complete RNA-seq transcriptome without prior feature selection:
+
+| Model | Mean Accuracy | Mean ROC-AUC |
+|---|---|---|
+| Logistic Regression | 98.3% | 0.9994 |
+| LASSO Regression | 99.6% | 0.9997 |
+| Random Forest | 98.8% | 0.9990 |
+
+These results demonstrated strong transcriptomic separability between tumor and normal tissue samples independent of differential expression-based feature engineering.
+
+---
+
+# Biomarker Discovery
+
+To prevent information leakage:
+
+- DEG analysis was performed independently within each training fold
+- Biomarkers were selected fold-wise
+- Stable biomarkers were identified across stratified cross-validation folds
+
+LASSO regularization further reduced the transcriptomic feature space into a sparse and biologically interpretable biomarker panel associated with breast cancer status.
+
+---
+
+# Biological Interpretation
+
+Several stable biomarkers identified across cross-validation folds are associated with known cancer-related biological processes:
+
+- **COL11A1** — extracellular matrix remodeling and tumor invasion
+- **CST1** — tumor progression and epithelial dysregulation
+- **PLAC1** — tumor growth and cancer-associated proliferation
+- **SPRY2** — MAPK/EGFR signaling dysregulation
+
+The clustered heatmaps demonstrated strong transcriptomic separation between tumor and normal tissue samples using both statistically significant DEGs and sparse LASSO-selected biomarkers.
+
+The PCA visualization further showed:
+
+- tight clustering of normal tissue samples
+- broader tumor heterogeneity consistent with breast cancer transcriptomic diversity
+
+---
+
+# Notebook Structure
+
+| Notebook | Purpose |
+|---|---|
+| `1_ingestion&Preprocessing.ipynb` | TCGA data ingestion, preprocessing, normalization, and label generation |
+| `2_differential_expression.ipynb` | Differential expression analysis and transcriptomic dysregulation |
+| `3_ml_modeling_&Visualization.ipynb` | Leakage-aware machine learning and biomarker discovery |
+| `4_baseline_transcriptomic_validation.ipynb` | Baseline transcriptomic validation using all genes without prior feature selection |
 
 ---
 
 # Future Improvements
 
 - External validation using GEO cohorts
-- Survival analysis
+- Survival analysis using clinical metadata
 - Multi-omics integration
 - SHAP-based interpretability
 - Streamlit deployment
